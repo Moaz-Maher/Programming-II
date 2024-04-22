@@ -1,3 +1,5 @@
+import javax.swing.JOptionPane;
+
 public class Order {
     private int customerId, orderId = 1;
     private Product[] products;
@@ -36,13 +38,13 @@ public class Order {
     }
 
     public void printOrderInfo() {
-        System.out.println("Here's your order's summary:");
-        System.out.println("Order id: " + orderId + "\tCustomer id: " + customerId);
-        System.out.println("Products:");
+        JOptionPane.showMessageDialog(null,
+                "Here's your order's summary\n" + "Order id: " + orderId + "\nCustomer id: " + customerId);
+        String message = "";
         for (int i = 0; i < products.length; i++) {
-            System.out.println(products[i].getName() + " - $" + products[i].getPrice());
+            message += products[i].getName() + " - $" + products[i].getPrice() + "\n";
             totalPrice += products[i].getPrice();
         }
-        System.out.println("Total price: $" + totalPrice);
+        JOptionPane.showMessageDialog(null, message, "Product Details", JOptionPane.INFORMATION_MESSAGE);
     }
 }
