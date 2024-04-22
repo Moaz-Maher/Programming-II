@@ -1,7 +1,4 @@
-import java.util.Scanner;
-
 public class Cart {
-    static Scanner input = new Scanner(System.in);
     private int customerId, nProducts;
     Product[] products;
 
@@ -45,10 +42,8 @@ public class Cart {
         return totalPrice;
     }
 
-    public boolean placeOrder() {
-        System.out.print("Your total price is: $" + calculatePrice() + "\t");
-        System.out.print("Would you like to placeyour order for the products in the cart?(Y/N): ");
-        if (input.nextLine().toUpperCase().equals("Y")) {
+    public boolean placeOrder(String Choice) {
+        if (Choice.toUpperCase().equals("Y")) {
             return true;
         } else {
             return false;
