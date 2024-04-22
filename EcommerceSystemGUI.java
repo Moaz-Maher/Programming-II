@@ -33,9 +33,6 @@ public class EcommerceSystem {
         int nProducts = Integer.parseInt(JOptionPane.showInputDialog("How many products you want to add to your cart?"));
         cart.setnProducts(nProducts);
         cart.setProducts();
-        System.out.print(electronicProduct.getProductId() + "- " + electronicProduct.getName() + "\t");
-        System.out.print(clothingProduct.getProductId() + "- " + clothingProduct.getName() + "\t");
-        System.out.println(bookProduct.getProductId() + "- " + bookProduct.getName());
         while (nProducts > 0) {
             int choice = Integer.parseInt(JOptionPane.showInputDialog(electronicProduct.getProductId() + "- " + electronicProduct.getName() + "\n" + clothingProduct.getProductId() + "- " + clothingProduct.getName() + "\n" + bookProduct.getProductId() + "- " + bookProduct.getName() + "\n" + "Which product do you want to to add to your cart?"));
             if (choice == electronicProduct.productId) {
@@ -53,9 +50,7 @@ public class EcommerceSystem {
 
         Order order = new Order();
         order.setCustomerId(customerId);
-        order.setOrderId();
         order.setProducts(cart.getProducts());
-        order.setTotalPrice(cart.calculatePrice());
         if (cart.placeOrder(JOptionPane.showInputDialog("Your total price is: $" + cart.calculatePrice() + "\n" + "Would you like to placeyour order for the products in the cart?(Y/N)"))) {
             order.printOrderInfo();
         } else {
