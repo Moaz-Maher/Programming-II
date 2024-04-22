@@ -1,36 +1,22 @@
 import javax.swing.JOptionPane;
 
 public class Order {
-    private int customerId, orderId = 1;
+    private int customerId;
+    private static int orderIdCounter = 1;
+    private int orderId;
     private Product[] products;
     private float totalPrice;
 
-    public int getCustomerId() {
-        return customerId;
+    public Order() {
+        this.orderId = orderIdCounter++;
     }
 
     public void setCustomerId(int customerId) {
         this.customerId = Math.abs(customerId);
     }
 
-    public int getOrderId() {
-        return (++orderId);
-    }
-
-    public void setOrderId() {
-        this.orderId = Math.abs(orderId);
-    }
-
-    public Product[] getProducts() {
-        return products;
-    }
-
     public void setProducts(Product[] products) {
         this.products = products;
-    }
-
-    public float getTotalPrice() {
-        return totalPrice;
     }
 
     public void setTotalPrice(float totalPrice) {
@@ -38,13 +24,18 @@ public class Order {
     }
 
     public void printOrderInfo() {
-        JOptionPane.showMessageDialog(null,
-                "Here's your order's summary\n" + "Order id: " + orderId + "\nCustomer id: " + customerId);
-        String message = "";
-        for (int i = 0; i < products.length; i++) {
-            message += products[i].getName() + " - $" + products[i].getPrice() + "\n";
-            totalPrice += products[i].getPrice();
+        StringBuilder message = new StringBuilder();
+        message.append("Order ID: ").append(orderId).append("\n");
+        message.append("Customer ID: ").append(customerId).append("\n\n");
+        message.append("Product Details:\n");
+        for (Product product : products) {
+            if (product != null) {
+                message.append(product.getName()).append(" - $").append(product.getPrice()).append("\n");
+                totalPrice += product.getPrice();
+            }
         }
-        JOptionPane.showMessageDialog(null, message, "Product Details", JOptionPane.INFORMATION_MESSAGE);
+        message.append("\nTotal Price: $").append(totalPrice);
+
+        JOptionPane.showMessageDialog(null, message.toString(), "Order Summary", JOptionPane.INFORMATION_MESSAGE);
     }
 }
