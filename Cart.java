@@ -31,7 +31,7 @@ public class Cart {
     }
 
     public void removeProduct(int index) {
-        this.products[index] = null;
+        this.products[--index] = null;
     }
 
     public float calculatePrice() {
